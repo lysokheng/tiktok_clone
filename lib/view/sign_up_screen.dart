@@ -12,13 +12,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(const Duration(seconds: 1))
-        .then((value) => {FlutterNativeSplash.remove()});
-  }
 
   @override
   Widget build(BuildContext context) {

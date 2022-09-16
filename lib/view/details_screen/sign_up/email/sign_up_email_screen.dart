@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/create_password.dart';
 
-class SignUpEmail extends StatefulWidget {
-   SignUpEmail({Key? key}) : super(key: key);
+import 'create_password_screen.dart';
+
+class SignUpEmailScreen extends StatefulWidget {
+   SignUpEmailScreen({Key? key}) : super(key: key);
   TextEditingController emailController = TextEditingController();
 
 
   @override
-  State<SignUpEmail> createState() => _SignUpEmailState();
+  State<SignUpEmailScreen> createState() => _SignUpEmailScreenState();
 }
 
-class _SignUpEmailState extends State<SignUpEmail> {
+class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
   Color backgroundColor = Colors.grey.shade800;
   Color foregroundColor = Colors.grey;
 
@@ -142,7 +143,7 @@ class _SignUpEmailState extends State<SignUpEmail> {
                               foregroundColor: foregroundColor),
                           onPressed: () {
                             print(widget.emailController);
-                            Get.to(() => CreatePassword(widget.emailController));
+                            Get.to(() => CreatePasswordScreen(widget.emailController));
                           },
                           child: const Text('Next')),
                     ),

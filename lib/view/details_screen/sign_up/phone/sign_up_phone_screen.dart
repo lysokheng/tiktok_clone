@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:tiktok_clone/view/details_screen/sign_up/phone/otp_screen.dart';
 
-class LogInPhone extends StatefulWidget {
-  LogInPhone({Key? key}) : super(key: key);
+class SignUpPhoneScreen extends StatefulWidget {
+  const SignUpPhoneScreen({Key? key}) : super(key: key);
 
   @override
-  State<LogInPhone> createState() => _LogInPhoneState();
+  State<SignUpPhoneScreen> createState() => _SignUpPhoneScreenState();
 }
 
-class _LogInPhoneState extends State<LogInPhone> {
-  Color backgroundColor = Colors.grey.shade800;
+Color backgroundColor = Colors.grey.shade800;
 
-  Color foregroundColor = Colors.grey;
+Color foregroundColor = Colors.grey;
+
+class _SignUpPhoneScreenState extends State<SignUpPhoneScreen> {
+  final phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +29,14 @@ class _LogInPhoneState extends State<LogInPhone> {
               children: [
                 //phone number
                 TextField(
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ], // Only numbers can be entered
                   autofocus: true,
-                  decoration: InputDecoration(
+                  controller: phoneController,
+                  decoration: const InputDecoration(
                     hintText: 'Phone number',
                     hintStyle: TextStyle(color: Colors.grey),
                     prefixText: 'KH +855  |  ',
@@ -57,9 +67,33 @@ class _LogInPhoneState extends State<LogInPhone> {
                     });
                   },
                 ),
-
                 const SizedBox(
                   height: 15,
+                ),
+
+                //description
+                const Text(
+                  'Your phone number will be used to improve your TikTok experience, including connecting you with people you may know, personalizing your ads experience, and more.',
+                  style: TextStyle(color: Colors.grey, height: 1.2),
+                ),
+                Row(
+                  children: const [
+                    Text(
+                      'If you sign up with SMS, SMS fees may apply.',
+                      style: TextStyle(color: Colors.grey, height: 1.2),
+                    ),
+                    Text(
+                      ' Learn more',
+                      style: TextStyle(
+                          color: Colors.white,
+                          height: 1.2,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
                 ),
 
                 //button
@@ -70,7 +104,9 @@ class _LogInPhoneState extends State<LogInPhone> {
                           style: TextButton.styleFrom(
                               backgroundColor: backgroundColor,
                               foregroundColor: foregroundColor),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => OTPScreen(phoneController.text));
+                          },
                           child: const Text('Send code')),
                     ),
                   ],

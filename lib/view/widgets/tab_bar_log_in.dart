@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tiktok_clone/view/details_screen/log_in/log_in_email_username.dart';
-import 'package:tiktok_clone/view/details_screen/log_in/log_in_phone.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/sign_up_email.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/sign_up_phone.dart';
+import 'package:tiktok_clone/view/details_screen/log_in/log_in_email_screen.dart';
+import 'package:tiktok_clone/view/details_screen/log_in/log_in_phone_screen.dart';
+
 
 class TabBarLogin extends StatelessWidget {
   const TabBarLogin({Key? key}) : super(key: key);
@@ -29,14 +28,14 @@ class TabBarLogin extends StatelessWidget {
             indicatorColor: Colors.white,
             tabs: [
               Tab(text: 'Phone',),
-              Tab(text: 'Email / Username',),
+              Tab(text: 'Email',),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            LogInPhone(),
-            LoginEmailUsername(),
+            LogInPhoneScreen(),
+            LoginEmailScreen(),
           ],
         ),
       ),

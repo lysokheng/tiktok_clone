@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/sign_up_email.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/sign_up_phone.dart';
+import 'package:tiktok_clone/view/details_screen/sign_up/email/sign_up_email_screen.dart';
+import 'package:tiktok_clone/view/details_screen/sign_up/phone/sign_up_phone_screen.dart';
 
 class TabBarSignUp extends StatelessWidget {
   const TabBarSignUp({Key? key}) : super(key: key);
@@ -34,8 +34,8 @@ class TabBarSignUp extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            SignUpPhone(),
-            SignUpEmail(),
+            SignUpPhoneScreen(),
+            SignUpEmailScreen(),
           ],
         ),
       ),

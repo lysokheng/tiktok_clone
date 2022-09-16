@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/birthday.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/sign_up_email.dart';
 
-class CreatePassword extends StatefulWidget {
+import 'birthday_screen.dart';
+
+class CreatePasswordScreen extends StatefulWidget {
 
   final TextEditingController emailController;
-  CreatePassword(this.emailController);
+  CreatePasswordScreen(this.emailController);
 
   TextEditingController passwordController = TextEditingController();
 
   @override
-  State<CreatePassword> createState() => _CreatePasswordState();
+  State<CreatePasswordScreen> createState() => _CreatePasswordScreenState();
 }
 
-class _CreatePasswordState extends State<CreatePassword> {
+class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
 
   Color backgroundColor = Colors.grey.shade800;
 
@@ -148,7 +148,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                           foregroundColor: foregroundColor),
                       onPressed: () {
                         print(widget.passwordController.text);
-                        Get.to(() => Birthday(widget.emailController, widget.passwordController));
+                        Get.to(() => BirthdayScreen(widget.emailController, widget.passwordController));
                       },
                       child: const Text('Next')),
                 ),

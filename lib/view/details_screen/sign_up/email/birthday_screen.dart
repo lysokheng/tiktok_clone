@@ -1,27 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:tiktok_clone/controller/auth_controller.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/create_password.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/sign_up_email.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/user_info_screen.dart';
-import 'package:tiktok_clone/view/profile_screen.dart';
+import 'package:tiktok_clone/view/details_screen/sign_up/add_profile_screen.dart';
 
-class Birthday extends StatefulWidget {
+class BirthdayScreen extends StatefulWidget {
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  Birthday(this.emailController, this.passwordController);
+  BirthdayScreen(this.emailController, this.passwordController);
 
   TextEditingController birthdayController = TextEditingController();
 
   @override
-  State<Birthday> createState() => _BirthdayState();
+  State<BirthdayScreen> createState() => _BirthdayScreenState();
 }
 
-class _BirthdayState extends State<Birthday> {
+class _BirthdayScreenState extends State<BirthdayScreen> {
   Color backgroundColor = Colors.grey.shade800;
   Color foregroundColor = Colors.grey;
 
@@ -115,7 +110,7 @@ class _BirthdayState extends State<Birthday> {
                       ),
                       onPressed: () {
                         print(widget.birthdayController.text);
-                        Get.to(() => UserInfoScreen(widget.emailController,
+                        Get.to(() => AddProfileScreen(widget.emailController,
                         widget.passwordController,
                         widget.birthdayController));
                       },

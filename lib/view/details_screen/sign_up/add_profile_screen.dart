@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/controller/auth_controller.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/birthday.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/create_password.dart';
-import 'package:tiktok_clone/view/details_screen/sign_up/sign_up_email.dart';
-import 'package:tiktok_clone/view/profile_screen.dart';
 
-class UserInfoScreen extends StatefulWidget {
+class AddProfileScreen extends StatefulWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController birthdayController;
 
-  UserInfoScreen(this.emailController, this.passwordController, this.birthdayController);
+  AddProfileScreen(this.emailController, this.passwordController, this.birthdayController);
   @override
-  State<UserInfoScreen> createState() => _UserInfoScreenState();
+  State<AddProfileScreen> createState() => _AddProfileScreenState();
 }
 
-class _UserInfoScreenState extends State<UserInfoScreen> {
+class _AddProfileScreenState extends State<AddProfileScreen> {
   final usernameController = TextEditingController();
 
   final _authController = Get.put(AuthController());
@@ -192,13 +188,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
                             print(widget.birthdayController.text);
 
-                            _authController.register(
-                                widget.emailController.text,
+                            _authController.signUp(
+                                usernameController.text,
                                 widget.birthdayController.text,
                                 widget.emailController.text,
-                                widget.birthdayController.text);
+                                widget.passwordController.text);
 
-                            Get.to(() => ProfileScreen());
                           },
                           child: const Text('Sign up')),
                     ),

@@ -1,14 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:tiktok_clone/controller/auth_controller.dart';
+import 'package:tiktok_clone/view/profile_screen.dart';
 import 'package:tiktok_clone/view/sign_up_screen.dart';
 import 'package:tiktok_clone/view/widgets/tab_bar_log_in.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(seconds: 1))
+        .then((value) => {FlutterNativeSplash.remove()});
+  }
+  @override
   Widget build(BuildContext context) {
+    AuthController _authController = Get.put(AuthController());
+
     return Scaffold(
+      backgroundColor: Colors.grey.shade900,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -52,7 +71,8 @@ class LoginScreen extends StatelessWidget {
                           ),
                           const Text(
                             'Manage your account, check notification, comment on videos, and more',
-                            style: TextStyle(color: Colors.grey, height: 1.2),
+                            style: TextStyle(
+                                color: Colors.grey, height: 1.2),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(
@@ -64,9 +84,11 @@ class LoginScreen extends StatelessWidget {
                                   child: TextButton.icon(
                                       onPressed: () {
                                         Get.to(() => const TabBarLogin());
+                                        _authController.obs;
                                       },
                                       style: TextButton.styleFrom(
-                                        backgroundColor: Colors.grey.shade800,
+                                        backgroundColor: Colors.grey
+                                            .shade800,
                                       ),
                                       icon: const Icon(
                                         Icons.person_outline_outlined,
@@ -74,7 +96,8 @@ class LoginScreen extends StatelessWidget {
                                       ),
                                       label: const Text(
                                         'Use phone or email',
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(
+                                            color: Colors.white),
                                       ))),
                             ],
                           ),
@@ -87,7 +110,8 @@ class LoginScreen extends StatelessWidget {
                                   child: TextButton.icon(
                                       onPressed: () {},
                                       style: TextButton.styleFrom(
-                                        backgroundColor: Colors.grey.shade800,
+                                        backgroundColor: Colors.grey
+                                            .shade800,
                                       ),
                                       icon: const Icon(
                                         Icons.facebook,
@@ -95,7 +119,8 @@ class LoginScreen extends StatelessWidget {
                                       ),
                                       label: const Text(
                                         'Continue with Facebook',
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(
+                                            color: Colors.white),
                                       ))),
                             ],
                           ),
@@ -108,7 +133,8 @@ class LoginScreen extends StatelessWidget {
                                   child: TextButton.icon(
                                       onPressed: () {},
                                       style: TextButton.styleFrom(
-                                        backgroundColor: Colors.grey.shade800,
+                                        backgroundColor: Colors.grey
+                                            .shade800,
                                       ),
                                       icon: const Icon(
                                         Icons.apple,
@@ -116,7 +142,8 @@ class LoginScreen extends StatelessWidget {
                                       ),
                                       label: const Text(
                                         'Continue with Apple',
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(
+                                            color: Colors.white),
                                       ))),
                             ],
                           ),
@@ -140,9 +167,16 @@ class LoginScreen extends StatelessWidget {
                       Get.to(() => SignUpScreen());
                     },
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 1,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      decoration: BoxDecoration(color: Colors.grey.shade800),
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 1,
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .height * 0.1,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade800),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
@@ -155,7 +189,8 @@ class LoginScreen extends StatelessWidget {
                           Text(
                             ' Sign up',
                             style: TextStyle(
-                                color: Colors.red, fontWeight: FontWeight.bold),
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -166,7 +201,7 @@ class LoginScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      )
     );
   }
 }
