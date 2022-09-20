@@ -1,7 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_countdown_timer/current_remaining_time.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
+import 'package:tiktok_clone/controller/auth_controller.dart';
 
 class OTPScreen extends StatelessWidget {
   final String phoneNumber;
@@ -10,7 +16,11 @@ class OTPScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 59;
+    final pinController = TextEditingController();
+    AuthController authController = Get.put(AuthController());
+
+    int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 60;
+    final countDownController = CountdownTimerController(endTime: endTime);
 
     const defaultPinTheme = PinTheme(
       width: 56,
@@ -65,29 +75,43 @@ class OTPScreen extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            Text(
-              'Your code was sent to +855 $phoneNumber',
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 14,
-              ),
+            Row(
+              children: [
+                Text(
+                  'Your code was sent to ',
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
+                ),
+                Text(
+                  '+855 $phoneNumber',
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 15,
             ),
             Pinput(
-
+              controller: pinController,
               defaultPinTheme: defaultPinTheme,
               submittedPinTheme: submittedPinTheme,
               length: 6,
               androidSmsAutofillMethod:  AndroidSmsAutofillMethod.smsRetrieverApi,
               validator: (s) {
-                return s == '222222' ? null : 'Pin is incorrect';
+                return s == authController.verificationID ? null : 'Pin is incorrect';
               },
               pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
               showCursor: true,
-
-              onCompleted: (pin) => print(pin),
+              onCompleted: (pinController) => print(pinController),
+              onSubmitted: (pinController){
+                authController.verifyOTP(pinController);
+              },
             ),
             const SizedBox(height: 15,),
             Row(
@@ -100,6 +124,7 @@ class OTPScreen extends StatelessWidget {
                   ),
                 ),
                 CountdownTimer(
+                  controller: countDownController,
                   endTime: endTime,
                   endWidget: const Text(''),
                   textStyle: const TextStyle(
@@ -108,7 +133,6 @@ class OTPScreen extends StatelessWidget {
                     fontSize: 14,
                   ),
                 ),
-
               ],
             ),
             const SizedBox(height: 15,),
@@ -117,14 +141,14 @@ class OTPScreen extends StatelessWidget {
                 Text(
                   'Did\'t get a code? ',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.white,
                     fontSize: 14,
                   ),
                 ),
                 Text(
                   'Request phone call',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.redAccent,
                     fontSize: 14,
                   ),
                 ),
@@ -134,5 +158,6 @@ class OTPScreen extends StatelessWidget {
         ),
       ),
     );
+
   }
 }

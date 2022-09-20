@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:tiktok_clone/controller/auth_controller.dart';
+import 'package:tiktok_clone/view/details_screen/sign_up/phone/login.dart';
 import 'package:tiktok_clone/view/details_screen/sign_up/phone/otp_screen.dart';
 
 class SignUpPhoneScreen extends StatefulWidget {
@@ -16,7 +18,7 @@ Color foregroundColor = Colors.grey;
 
 class _SignUpPhoneScreenState extends State<SignUpPhoneScreen> {
   final phoneController = TextEditingController();
-
+  AuthController authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,7 @@ class _SignUpPhoneScreenState extends State<SignUpPhoneScreen> {
                   ], // Only numbers can be entered
                   autofocus: true,
                   controller: phoneController,
+                  maxLength: 10,
                   decoration: const InputDecoration(
                     hintText: 'Phone number',
                     hintStyle: TextStyle(color: Colors.grey),
@@ -105,7 +108,9 @@ class _SignUpPhoneScreenState extends State<SignUpPhoneScreen> {
                               backgroundColor: backgroundColor,
                               foregroundColor: foregroundColor),
                           onPressed: () {
+                            authController.loginWithPhone(phoneController.text);
                             Get.to(() => OTPScreen(phoneController.text));
+                            // Get.to(() => LoginScreen());
                           },
                           child: const Text('Send code')),
                     ),

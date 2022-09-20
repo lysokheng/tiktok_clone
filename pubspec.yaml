@@ -50,6 +50,8 @@ dependencies:
   video_compress: ^3.1.1
   pinput: ^2.2.12
   flutter_countdown_timer: ^4.1.0
+  fluttertoast: ^8.0.9
+
 
 dev_dependencies:
   flutter_test:

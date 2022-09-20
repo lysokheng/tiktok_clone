@@ -192,7 +192,8 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                                 usernameController.text,
                                 widget.birthdayController.text,
                                 widget.emailController.text,
-                                widget.passwordController.text);
+                                widget.passwordController.text,
+                                _authController.profile.toString());
 
                           },
                           child: const Text('Sign up')),

@@ -115,7 +115,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                                   backgroundColor: backgroundColor,
                                   foregroundColor: foregroundColor),
                               onPressed: () {
-                                _authController.logIn(emailController.text, passwordController.text);
+                                _authController.loginWithEmail(emailController.text, passwordController.text);
                               },
                               child: const Text('Login')),
                         ),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:tiktok_clone/controller/home_controller.dart';
 import 'package:tiktok_clone/view/profile_screen.dart';
+import 'package:tiktok_clone/view/short_videos_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -15,16 +16,12 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   List listScreen = [
-    const Center(
-      child: Text('Home Screen'),
-    ),
+    ShortVideosScreen(),
     const Center(
       child: Text('Friends Screen'),
-
     ),
     const Center(
       child: Text('Add Screen'),
-
     ),
     const Center(
       child: Text('Inbox Screen'),
@@ -59,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(Icons.group_outlined), label: "Friends"),
           BottomNavigationBarItem(
               icon: GestureDetector(
-                onTap: (){
+                onTap: () {
                   homeController.pickVideo();
                 },
                 child: SizedBox(
