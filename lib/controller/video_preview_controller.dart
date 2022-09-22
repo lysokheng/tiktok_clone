@@ -19,7 +19,6 @@ class VideoPreviewController extends GetxController {
     EasyLoading.show(status: 'loading...');
     String uid = FirebaseAuth.instance.currentUser!.uid;
     print('user id :${uid}');
-
     DocumentSnapshot documentSnapshot =
         await FirebaseFirestore.instance.collection('users').doc(uid).get();
     final docs = await FirebaseFirestore.instance.collection('videos').get();

@@ -8,7 +8,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -94,6 +93,10 @@ class ProfileScreen extends StatelessWidget {
                           minVerticalPadding: 0,
                           onTap: () {
                             Get.to(() => SettingsScreen());
+                            print('width ${MediaQuery.of(context).size.width}');
+
+                            print(
+                                'height ${MediaQuery.of(context).size.height}');
                           },
                         ),
                         const Divider(
