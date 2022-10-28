@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:tiktok_clone/Model/video_model.dart';
+import 'package:tiktok_clone/model/video_model.dart';
 import 'package:video_player/video_player.dart';
 
 class ShortVideosController extends GetxController with StateMixin {
